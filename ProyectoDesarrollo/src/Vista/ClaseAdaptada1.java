@@ -44,7 +44,7 @@ public class ClaseAdaptada1 extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
  public void paintComponent(Graphics g) {
 Dimension tam = getSize();
-ImageIcon imagen = new ImageIcon(getClass().getResource("/vista/2.jpg"));
+ImageIcon imagen = new ImageIcon(getClass().getResource("/vista/4.jpg"));
 g.drawImage(imagen.getImage(), 0, 0, tam.width, tam.height, null);
 setOpaque(false);
 super.paintComponent(g);
