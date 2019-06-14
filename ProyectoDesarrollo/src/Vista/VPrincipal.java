@@ -33,7 +33,6 @@ public class VPrincipal extends javax.swing.JFrame{
     objPanel.setSize(pnlContainer.getWidth(), pnlContainer.getHeight());
     pnlContainer.add(objPanel);
     pnlContainer.validate();
-    createMenuBar();
     }
 
     /**
@@ -46,13 +45,22 @@ public class VPrincipal extends javax.swing.JFrame{
     private void initComponents() {
 
         jMenu1 = new javax.swing.JMenu();
-        jMenu4 = new javax.swing.JMenu();
+        jPopupMenu1 = new javax.swing.JPopupMenu();
         pnlContainer = new javax.swing.JPanel();
-        contentPane = new javax.swing.JPanel();
+        jMenuBar1 = new javax.swing.JMenuBar();
+        Opusuarios = new javax.swing.JMenu();
+        agregarUsuario = new javax.swing.JMenuItem();
+        jMenuItem2 = new javax.swing.JMenuItem();
+        jMenuItem3 = new javax.swing.JMenuItem();
+        jMenuItem1 = new javax.swing.JMenuItem();
+        Opconcesionaria = new javax.swing.JMenu();
+        Opmotos = new javax.swing.JMenu();
+        Opproforma = new javax.swing.JMenu();
+        Oppedidos = new javax.swing.JMenu();
+        Opventas = new javax.swing.JMenu();
+        Opreportes = new javax.swing.JMenu();
 
         jMenu1.setText("jMenu1");
-
-        jMenu4.setText("jMenu4");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(1280, 720));
@@ -61,29 +69,57 @@ public class VPrincipal extends javax.swing.JFrame{
 
         pnlContainer.setMaximumSize(new java.awt.Dimension(1280, 720));
 
-        javax.swing.GroupLayout contentPaneLayout = new javax.swing.GroupLayout(contentPane);
-        contentPane.setLayout(contentPaneLayout);
-        contentPaneLayout.setHorizontalGroup(
-            contentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 181, Short.MAX_VALUE)
-        );
-        contentPaneLayout.setVerticalGroup(
-            contentPaneLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 720, Short.MAX_VALUE)
-        );
-
         javax.swing.GroupLayout pnlContainerLayout = new javax.swing.GroupLayout(pnlContainer);
         pnlContainer.setLayout(pnlContainerLayout);
         pnlContainerLayout.setHorizontalGroup(
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(pnlContainerLayout.createSequentialGroup()
-                .addComponent(contentPane, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 1099, Short.MAX_VALUE))
+            .addGap(0, 1280, Short.MAX_VALUE)
         );
         pnlContainerLayout.setVerticalGroup(
             pnlContainerLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(contentPane, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGap(0, 694, Short.MAX_VALUE)
         );
+
+        Opusuarios.setText("Usuarios");
+
+        agregarUsuario.setText("Nuevo");
+        Opusuarios.add(agregarUsuario);
+
+        jMenuItem2.setText("Modificar");
+        jMenuItem2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jMenuItem2ActionPerformed(evt);
+            }
+        });
+        Opusuarios.add(jMenuItem2);
+
+        jMenuItem3.setText("Buscar");
+        Opusuarios.add(jMenuItem3);
+
+        jMenuItem1.setText("Dar de Baja");
+        Opusuarios.add(jMenuItem1);
+
+        jMenuBar1.add(Opusuarios);
+
+        Opconcesionaria.setText("Concesionarias");
+        jMenuBar1.add(Opconcesionaria);
+
+        Opmotos.setText("Motos");
+        jMenuBar1.add(Opmotos);
+
+        Opproforma.setText("Proformas");
+        jMenuBar1.add(Opproforma);
+
+        Oppedidos.setText("Pedidos");
+        jMenuBar1.add(Oppedidos);
+
+        Opventas.setText("Ventas");
+        jMenuBar1.add(Opventas);
+
+        Opreportes.setText("Reportes");
+        jMenuBar1.add(Opreportes);
+
+        setJMenuBar(jMenuBar1);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -98,6 +134,10 @@ public class VPrincipal extends javax.swing.JFrame{
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -115,83 +155,21 @@ public class VPrincipal extends javax.swing.JFrame{
             }
         });
     }
-public JMenuBar createMenuBar() {
-        JMenuBar menuBar = new JMenuBar();
-        menuBar.setLayout(new BoxLayout(menuBar, BoxLayout.PAGE_AXIS));
-        menuBar.add(createMenu("Menu 1"));
-        menuBar.add(createMenu("Menu 2"));
-        menuBar.add(createMenu("Menu 3"));
- 
-        menuBar.setBorder(BorderFactory.createMatteBorder(0,0,0,1,
-                                                          Color.BLACK));
-        return menuBar;
-    }
- 
-    // used by createMenuBar
-    public JMenu createMenu(String title) {
-        JMenu m = new HorizontalMenu(title);
-        m.add("Menu item #1 in " + title);
-        m.add("Menu item #2 in " + title);
-        m.add("Menu item #3 in " + title);
- 
-        JMenu submenu = new HorizontalMenu("Submenu");
-        submenu.add("Submenu item #1");
-        submenu.add("Submenu item #2");
-        m.add(submenu);
- 
-        return m;
-    }
-
- 
-    class HorizontalMenu extends JMenu {
-        HorizontalMenu(String label) {
-            super(label);
-            JPopupMenu pm = getPopupMenu();
-            pm.setLayout(new BoxLayout(pm, BoxLayout.LINE_AXIS));
-        }
- 
-        public Dimension getMinimumSize() {
-            return getPreferredSize();
-        }
- 
-        public Dimension getMaximumSize() {
-            return getPreferredSize();
-        }
- 
-        public void setPopupMenuVisible(boolean b) {
-            boolean isVisible = isPopupMenuVisible();
-            if (b != isVisible) {
-                if ((b==true) && isShowing()) {
-                    int x = 0;
-                    int y = 0;
-                    Container parent = getParent();
-                     
-                    // for sub menus
-                    if (parent instanceof JPopupMenu) {
-                       /* x = 0;
-                        y = getHeight();*/
-                        x = getHeight();
-                        y = 0;
-                         
-                        //..glue other components to the end
-                        
-                    } else {
-                      /*  x = getWidth();
-                        y = 0;*/
-                        x = 0;
-                        y = getHeight();
-                    }
-                    getPopupMenu().show(this, x, y);
-                } else {
-                    getPopupMenu().setVisible(false);
-                }
-            }
-        }
-    }
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel contentPane;
+    private javax.swing.JMenu Opconcesionaria;
+    private javax.swing.JMenu Opmotos;
+    private javax.swing.JMenu Oppedidos;
+    private javax.swing.JMenu Opproforma;
+    private javax.swing.JMenu Opreportes;
+    private javax.swing.JMenu Opusuarios;
+    private javax.swing.JMenu Opventas;
+    private javax.swing.JMenuItem agregarUsuario;
     private javax.swing.JMenu jMenu1;
-    private javax.swing.JMenu jMenu4;
+    private javax.swing.JMenuBar jMenuBar1;
+    private javax.swing.JMenuItem jMenuItem1;
+    private javax.swing.JMenuItem jMenuItem2;
+    private javax.swing.JMenuItem jMenuItem3;
+    private javax.swing.JPopupMenu jPopupMenu1;
     private javax.swing.JPanel pnlContainer;
     // End of variables declaration//GEN-END:variables
 }
