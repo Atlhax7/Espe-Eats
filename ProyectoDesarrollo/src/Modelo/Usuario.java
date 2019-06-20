@@ -12,15 +12,19 @@ package Modelo;
  */
 public class Usuario {
     String idUsuario;
-    String nombreUsuario;
+    String nombreUsuario;    
+    String apellidoUsuario;
     String password;
     String permisos;
+    String estado;
 
-    public Usuario(String idUsuario, String nombreUsuario, String password, String permisos) {
+    public Usuario(String idUsuario, String nombreUsuario, String apellidoUsuario, String password, String permisos, String estado) {
         this.idUsuario = idUsuario;
         this.nombreUsuario = nombreUsuario;
+        this.apellidoUsuario = apellidoUsuario;
         this.password = password;
         this.permisos = permisos;
+        this.estado = estado;
     }
 
     public Usuario(){
@@ -57,6 +61,22 @@ public class Usuario {
 
     public void setPermisos(String permisos) {
         this.permisos = permisos;
+    }
+
+    public String getApellidoUsuario() {
+        return apellidoUsuario;
+    }
+
+    public void setApellidoUsuario(String apellidoUsuario) {
+        this.apellidoUsuario = apellidoUsuario;
+    }
+
+    public String getEstado() {
+        return estado;
+    }
+
+    public void setEstado(String estado) {
+        this.estado = estado;
     }
     
 }

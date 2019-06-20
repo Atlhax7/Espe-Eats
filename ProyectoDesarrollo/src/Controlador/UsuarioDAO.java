@@ -28,8 +28,8 @@ public class UsuarioDAO {
         Connection con = conexion.getConnection();
         Statement st;
         //Creamos las sentenia sql
-        String sql = "INSERT INTO usuario (IdUsuario,NombreUsuario,password,permisos) "
-                + "VALUES ('" + usuario.getIdUsuario() + "','" + usuario.getNombreUsuario() + "','" + usuario.getPassword() + "','" + usuario.getPermisos() +"')";
+        String sql = "INSERT INTO usuario (IdUsuario,NombreUsuario,ApellidoUsuario,password,permisos,estado) "
+                + "VALUES ('" + usuario.getIdUsuario() + "','" + usuario.getNombreUsuario() + "','" + usuario.getApellidoUsuario()+ "','"+ usuario.getPassword() + "','" + usuario.getPermisos() +"','"+usuario.getEstado()+"')";
         //Ejecutamos la sentencia SQL
         try {
             st = con.createStatement();
@@ -49,7 +49,7 @@ public class UsuarioDAO {
         Connection con = conexion.getConnection();
         Statement st;
         //Creamos las sentenia sql
-        String sql = "UPDATE usuario SET NombreUsuario='" + usuario.getNombreUsuario() + "',Password='" + usuario.getPassword() +  "',Permisos='" + usuario.getPermisos() + "'";
+        String sql = "UPDATE usuario SET NombreUsuario='" + usuario.getNombreUsuario() + "',ApellidoUsuario='"+ usuario.getApellidoUsuario() + "',password='" + usuario.getPassword() +  "',permisos='" + usuario.getPermisos() + "',estado='"+usuario.getEstado()+"' WHERE IdUsuario='"+ usuario.getIdUsuario()+"'";
         //Ejecutamos la sentencia SQL
         try {
             st = con.createStatement();
@@ -114,7 +114,7 @@ public class UsuarioDAO {
         }
     }
 
-    public void Leer(String n,JTextField text,JTextField text2,JTextField text3) {
+    public void Leer(String n,JTextField text,JTextField text2,JTextField text3,JTextField text4) {
         Connection con = conexion.getConnection();
         Statement st;
         ResultSet rs;
@@ -124,9 +124,10 @@ public class UsuarioDAO {
             rs = st.executeQuery(sql);
             while (rs.next()) {
                // texto.append("ID:" + rs.getString(1) + " NombreUsuario:" + rs.getString(2) + " Email:" + rs.getString(3) + " Password:" + rs.getString(4) +  " Direccion:" + rs.getString(5) +" Sector:" + rs.getString(6) +" LugarDeReferencia:" + rs.getString(7) +" NroTelefonoConvencional:" + rs.getString(8) +" Extension:" + rs.getString(9) +" NroTelefonoMovil:" + rs.getString(10) +"\n");
-                text.setText(text.getText() + rs.getString(2));
-                text2.setText(text2.getText() + rs.getString(3));
-                text3.setText(text3.getText() + rs.getString(4));
+                text.setText(text.getText() + rs.getString(1));
+                text2.setText(text2.getText() + rs.getString(2));
+                text3.setText(text3.getText() + rs.getString(3));
+                text4.setText(text4.getText() + rs.getString(4));
             }
             rs.close();
             st.close();

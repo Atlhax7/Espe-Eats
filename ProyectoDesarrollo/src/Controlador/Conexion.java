@@ -19,10 +19,9 @@ import org.apache.commons.dbcp.BasicDataSource;
 public class Conexion {
     
     public DataSource dataSource;
-    private static final String URL = "jdbc:mysql://localhost:3306/bdgestionmotos?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
+    private static final String URL = "jdbc:mysql://localhost:3306/bd_gestion_motos?useUnicode=true&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC";
     private static final String USERNAME = "root";
-    private static final String PASSWORD = "gabbyta95";
-
+    private static final String PASSWORD = "gabbyta95"; //CAMBIAN AQUI POR SU CONTRASEÑA
          public Conexion(){
 
         inicializaDataSource();
