@@ -5,7 +5,10 @@ package paneles;
 
 import Controlador.UsuarioDAO;
 import Modelo.Usuario;
+import java.awt.event.KeyEvent;
 import java.util.Arrays;
+import javax.swing.JOptionPane;
+import org.apache.commons.lang3.math.NumberUtils;
 
 /**
  *
@@ -44,13 +47,13 @@ public class pnlUsuario extends javax.swing.JPanel {
         jTextField4 = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         jComboBox2 = new javax.swing.JComboBox();
+        lblErrorLetra = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jTextField11 = new javax.swing.JTextField();
         jButton6 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
-        jButton3 = new javax.swing.JButton();
         btnAgregar = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(255, 255, 255));
@@ -67,6 +70,12 @@ public class pnlUsuario extends javax.swing.JPanel {
 
         jLabel3.setText("Permisos");
 
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField3KeyTyped(evt);
+            }
+        });
+
         jLabel1.setText("Id Usuario");
 
         jLabel2.setText("Nombre Usuario");
@@ -74,6 +83,12 @@ public class pnlUsuario extends javax.swing.JPanel {
         jLabel5.setText("Estado");
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Activado", "Desactivado" }));
+
+        jTextField4.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyTyped(java.awt.event.KeyEvent evt) {
+                jTextField4KeyTyped(evt);
+            }
+        });
 
         jLabel6.setText("Apellido Usuario");
 
@@ -93,13 +108,15 @@ public class pnlUsuario extends javax.swing.JPanel {
                     .addComponent(jLabel5)
                     .addComponent(jLabel6))
                 .addGap(36, 36, 36)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                    .addComponent(jTextField4)
-                    .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jTextField3)
-                    .addComponent(jComboBox1, 0, 140, Short.MAX_VALUE)
-                    .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, 0, 140, Short.MAX_VALUE))
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(lblErrorLetra)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                        .addComponent(jTextField4)
+                        .addComponent(jTextField1, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextField2, javax.swing.GroupLayout.Alignment.LEADING)
+                        .addComponent(jTextField3)
+                        .addComponent(jComboBox1, 0, 140, Short.MAX_VALUE)
+                        .addComponent(jComboBox2, javax.swing.GroupLayout.Alignment.LEADING, 0, 140, Short.MAX_VALUE)))
                 .addContainerGap(33, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
@@ -129,7 +146,8 @@ public class pnlUsuario extends javax.swing.JPanel {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel5)
                     .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(41, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 41, Short.MAX_VALUE)
+                .addComponent(lblErrorLetra))
         );
 
         jButton4.setText("Modificar");
@@ -148,6 +166,12 @@ public class pnlUsuario extends javax.swing.JPanel {
 
         jLabel11.setText("Id Usuario");
 
+        jTextField11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField11ActionPerformed(evt);
+            }
+        });
+
         jButton6.setText("Buscar");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -159,13 +183,6 @@ public class pnlUsuario extends javax.swing.JPanel {
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
-            }
-        });
-
-        jButton3.setText("Regresar Menú");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
             }
         });
 
@@ -197,8 +214,7 @@ public class pnlUsuario extends javax.swing.JPanel {
                             .addComponent(jButton6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addGap(18, 18, 18)
                             .addComponent(jButton5, javax.swing.GroupLayout.PREFERRED_SIZE, 115, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(18, 18, 18)
-                            .addComponent(jButton3))
+                            .addGap(137, 137, 137))
                         .addGroup(layout.createSequentialGroup()
                             .addComponent(btnAgregar, javax.swing.GroupLayout.PREFERRED_SIZE, 142, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addGap(18, 18, 18)
@@ -230,8 +246,7 @@ public class pnlUsuario extends javax.swing.JPanel {
                 .addGap(18, 18, 18)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton5)
-                    .addComponent(jButton6)
-                    .addComponent(jButton3))
+                    .addComponent(jButton6))
                 .addGap(53, 53, 53))
         );
     }// </editor-fold>//GEN-END:initComponents
@@ -243,8 +258,15 @@ public class pnlUsuario extends javax.swing.JPanel {
         String password = jTextField2.getText();
         String permisos = (String)jComboBox2.getSelectedItem();
     String estado=(String)jComboBox1.getSelectedItem();
-        Usuario usuario = new Usuario(IdUsuario,nombreUsuario,apellidoUsuario,password,permisos,estado);
-        userdao.AgregarUsuario(usuario);        // TODO add your handling code here:
+    if (NumberUtils.isCreatable(jTextField1.getText())) {    
+    if (!validarCamposVacios()) {
+            Usuario usuario = new Usuario(IdUsuario,nombreUsuario,apellidoUsuario,password,permisos,estado);
+        userdao.AgregarUsuario(usuario);
+        } else {
+                JOptionPane.showMessageDialog(null,"Existen campos vacíos, por favor revise nuevamente los datos");
+            } } else {
+            JOptionPane.showMessageDialog(null, "El id no es un número");
+        }       // TODO add your handling code here:
     }//GEN-LAST:event_btnAgregarActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
@@ -254,8 +276,15 @@ public class pnlUsuario extends javax.swing.JPanel {
         String password = jTextField2.getText();
         String permisos = (String)jComboBox2.getSelectedItem();
        String estado=(String)jComboBox1.getSelectedItem();
+       if (NumberUtils.isCreatable(jTextField1.getText())) {    
+    if (!validarCamposVacios()) {
         Usuario usuario = new Usuario(IdUsuario,nombreUsuario,apellidoUsuario,password,permisos,estado);
         userdao.ActualizarUsuario(IdUsuario,usuario);
+         } else {
+                JOptionPane.showMessageDialog(null,"Existen campos vacíos, por favor revise nuevamente los datos");
+            } } else {
+            JOptionPane.showMessageDialog(null, "El id no es un número");
+        } 
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
@@ -274,8 +303,14 @@ public class pnlUsuario extends javax.swing.JPanel {
         jTextField4.setText("");
         jComboBox1.setSelectedIndex(0);
         jComboBox2.setSelectedIndex(0);
+        if (NumberUtils.isCreatable(jTextField11.getText())) {    
+        if(jTextField11.getText().isEmpty()){
         String IdUsuario = jTextField11.getText();
-        userdao.Leer(IdUsuario,jTextField1,jTextField3,jTextField4,jTextField2);
+        userdao.Leer(IdUsuario,jTextField1,jTextField3,jTextField4,jTextField2);} else {
+                JOptionPane.showMessageDialog(null,"Existen campos vacíos, por favor revise nuevamente los datos");
+            }} else {
+            JOptionPane.showMessageDialog(null, "El id no es un número");
+        } 
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -283,28 +318,42 @@ public class pnlUsuario extends javax.swing.JPanel {
         userdao.EliminarUsuario(IdUsuario);
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        /*     MenuPrincipal vNueva = new MenuPrincipal(){
-            //Con esto cuando llamemos a dispose de vNueva abrimos la principal
-            @Override
-            public void dispose(){
-                //Hacemos visible la principal
-                getFrame().setVisible(true);
-                //Cerramos vNueva
-                super.dispose();
+    private void jTextField11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField11ActionPerformed
 
-            };
+    private void jTextField3KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyTyped
+   char c=evt.getKeyChar();             
+         
+          if(Character.isDigit(c)) { 
+              getToolkit().beep(); 
+               
+              evt.consume();                
+              lblErrorLetra.setText("Ingresa Solo Letras"); 
+               
+          }     
+    }//GEN-LAST:event_jTextField3KeyTyped
 
-            //Hacemos visible a vNueva
-            vNueva.setVisible(true);
-            this.setVisible(false);*/
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void jTextField4KeyTyped(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField4KeyTyped
+          char c=evt.getKeyChar();             
+         
+          if(Character.isDigit(c)) { 
+              getToolkit().beep(); 
+               
+              evt.consume();                
+              lblErrorLetra.setText("Ingresa Solo Letras"); 
+               
+          }    
+    }//GEN-LAST:event_jTextField4KeyTyped
 
-
+    private boolean validarCamposVacios() {
+        return jTextField1.getText().isEmpty() || jTextField2.getText() == null
+                || jTextField3.getText().isEmpty() || jTextField4.getText() == null|| jComboBox1.getSelectedItem()== null|| jComboBox2.getSelectedItem()== null;
+    }
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnAgregar;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
@@ -324,5 +373,6 @@ public class pnlUsuario extends javax.swing.JPanel {
     private javax.swing.JTextField jTextField2;
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
+    private javax.swing.JLabel lblErrorLetra;
     // End of variables declaration//GEN-END:variables
 }
