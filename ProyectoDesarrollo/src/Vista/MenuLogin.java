@@ -6,7 +6,7 @@ import Controlador.UsuarioDAO;
 import Modelo.Usuario;
 import java.util.ArrayList;
 import javax.swing.JOptionPane;
-import principal.Principal;
+import principal.Admin;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -168,7 +168,7 @@ public class MenuLogin extends javax.swing.JFrame {
                 list = model.login(txt_user.getText(), txt_user1.getText());                
                 if(list.size()>0){                    
                     JOptionPane.showMessageDialog(null, "Bienvenido al sistema", "INFO.", JOptionPane.INFORMATION_MESSAGE);                    
-                            Principal frame = new Principal();      
+                            Admin frame = new Admin();      
                             frame.setSize(1280, 720);
                             frame.setVisible(true);
                     
