@@ -137,7 +137,7 @@ public class UsuarioDAO {
         }
     }
     
-     public ArrayList<Usuario> login(String user, String clave){
+     public ArrayList<Usuario> login(String user, String clave, String permisos){
     
         
         Connection conectar = conexion.getConnection();
@@ -151,14 +151,15 @@ public class UsuarioDAO {
             pst = conectar.createStatement();
             if(conectar != null){
                 
-                String sql ="SELECT IdUsuario, Password FROM usuario WHERE IdUsuario ='"+user+"' AND Password='"+clave+"'";
+                String sql ="SELECT IdUsuario, Password FROM usuario WHERE IdUsuario ='"+user+"' AND Password='"+clave+"'AND permisos='"+permisos+"'";
                 pst = conectar.prepareStatement(sql);                
                 rs = pst.executeQuery(sql);
                                 
                 if(rs.next()){                    
                     cuenta = new Usuario();
                     cuenta.setIdUsuario(rs.getString("IdUsuario"));
-                    cuenta.setPassword(rs.getString("Password"));                    
+                    cuenta.setPassword(rs.getString("Password")); 
+                    cuenta.setPermisos(rs.getString("permisos"));
                     list.add(cuenta);
                 }
                  
