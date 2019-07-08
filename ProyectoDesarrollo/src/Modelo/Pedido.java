@@ -15,19 +15,11 @@ import java.util.ArrayList;
 public class Pedido {
     
     private String cod_pedido;
-    private String concesionario  ;
-    private LocalDate fecha  ;
+    private Concesionario concesionario;
+    private LocalDate fecha;
     private String estado  ;
     private Concesionario concesionario1 ;
-    private ArrayList<Moto> lista_Motos=new ArrayList<Moto>(); 
-
-    public Pedido(String cod_pedido, String concesionario, LocalDate fecha, String estado, Concesionario concesionario1) {
-        this.cod_pedido = cod_pedido;
-        this.concesionario = concesionario;
-        this.fecha = fecha;
-        this.estado = estado;
-        this.concesionario1 = concesionario1;
-    }
+    private ArrayList<detalle_Pedido> lista_Motos=new ArrayList<>(); 
 
     public Pedido() {
     }
@@ -40,11 +32,11 @@ public class Pedido {
         this.cod_pedido = cod_pedido;
     }
 
-    public String getConcesionario() {
+    public Concesionario getConcesionario() {
         return concesionario;
     }
 
-    public void setConcesionario(String concesionario) {
+    public void setConcesionario(Concesionario concesionario) {
         this.concesionario = concesionario;
     }
 
@@ -72,17 +64,15 @@ public class Pedido {
         this.concesionario1 = concesionario1;
     }
 
-    public ArrayList<Moto> getLista_Motos() {
+    public ArrayList<detalle_Pedido> getLista_Motos() {
         return lista_Motos;
     }
 
-    public void setLista_Motos(ArrayList<Moto> lista_Motos) {
+    public void setLista_Motos(ArrayList<detalle_Pedido> lista_Motos) {
         this.lista_Motos = lista_Motos;
     }
+    
+    
 
-    @Override
-    public String toString() {
-        return "Pedido{" + "cod_pedido=" + cod_pedido + ", concesionario=" + concesionario + ", fecha=" + fecha + ", estado=" + estado + ", concesionario1=" + concesionario1 + ", lista_Motos=" + lista_Motos + '}';
-    }
     
 }

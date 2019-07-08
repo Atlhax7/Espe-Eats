@@ -4,6 +4,12 @@
  * and open the template in the editor.
  */
 package paneles;
+import Controlador.FacturaDAO;
+import Controlador.UsuarioDAO;
+import Controlador.VentaDAO;
+import Modelo.Factura;
+import Modelo.Usuario;
+import Modelo.Venta;
 import javax.swing.JOptionPane;
 import org.apache.commons.lang3.math.NumberUtils;
 /**
@@ -11,7 +17,10 @@ import org.apache.commons.lang3.math.NumberUtils;
  * @author RojeruSan
  */
 public class pnlFacturas extends javax.swing.JPanel {
-
+    
+    FacturaDAO factd = new FacturaDAO();
+    VentaDAO ventd = new VentaDAO();
+    UsuarioDAO userd = new UsuarioDAO();
     /**
      * Creates new form pnlHome
      */
@@ -29,38 +38,166 @@ public class pnlFacturas extends javax.swing.JPanel {
     private void initComponents() {
 
         jLabel7 = new javax.swing.JLabel();
+        jLabel5 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jLabel6 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
+        txtSub = new javax.swing.JTextField();
+        txt_num_factura = new javax.swing.JTextField();
+        txtImp = new javax.swing.JTextField();
+        jLabel2 = new javax.swing.JLabel();
+        txtTot = new javax.swing.JTextField();
+        jLabel3 = new javax.swing.JLabel();
+        jLabel4 = new javax.swing.JLabel();
+        btnBuscar = new javax.swing.JButton();
+        btnEliminar = new javax.swing.JButton();
+        lblFecha = new javax.swing.JLabel();
+        lblEncargado = new javax.swing.JLabel();
+        lblConcesionario = new javax.swing.JLabel();
+        lblEstado = new javax.swing.JLabel();
 
         setBackground(new java.awt.Color(255, 255, 255));
+        setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         jLabel7.setFont(new java.awt.Font("Roboto", 1, 48)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(128, 128, 131));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img1/web.png"))); // NOI18N
         jLabel7.setText("FACTURAS");
+        add(jLabel7, new org.netbeans.lib.awtextra.AbsoluteConstraints(12, 13, 585, 120));
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7, javax.swing.GroupLayout.PREFERRED_SIZE, 585, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(64, Short.MAX_VALUE))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7)
-                .addGap(403, 403, 403))
-        );
+        jLabel5.setText("Encargado:");
+        add(jLabel5, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 240, -1, -1));
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null},
+                {null, null, null},
+                {null, null, null},
+                {null, null, null}
+            },
+            new String [] {
+                "Modelo", "Color", "Cantidad"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(100, 270, -1, 110));
+
+        jLabel6.setText("Subtotal:");
+        add(jLabel6, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 390, -1, -1));
+
+        jLabel8.setText("Impuestos:");
+        add(jLabel8, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 430, -1, -1));
+
+        jLabel9.setText("Total:");
+        add(jLabel9, new org.netbeans.lib.awtextra.AbsoluteConstraints(420, 470, -1, -1));
+
+        jLabel1.setFont(new java.awt.Font("Tahoma", 0, 18)); // NOI18N
+        jLabel1.setText("FACTURA °");
+        add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 150, 115, 26));
+
+        txtSub.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSubActionPerformed(evt);
+            }
+        });
+        add(txtSub, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 390, 59, -1));
+
+        txt_num_factura.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        add(txt_num_factura, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 150, 130, 26));
+        add(txtImp, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 430, 58, -1));
+
+        jLabel2.setText("Concesionario:");
+        add(jLabel2, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 240, -1, -1));
+        add(txtTot, new org.netbeans.lib.awtextra.AbsoluteConstraints(500, 470, 58, -1));
+
+        jLabel3.setText("Fecha:");
+        add(jLabel3, new org.netbeans.lib.awtextra.AbsoluteConstraints(110, 210, -1, -1));
+
+        jLabel4.setText("Estado:");
+        add(jLabel4, new org.netbeans.lib.awtextra.AbsoluteConstraints(370, 210, -1, -1));
+
+        btnBuscar.setText("Buscar");
+        btnBuscar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnBuscarActionPerformed(evt);
+            }
+        });
+        add(btnBuscar, new org.netbeans.lib.awtextra.AbsoluteConstraints(520, 150, -1, -1));
+
+        btnEliminar.setText("Eliminar");
+        btnEliminar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEliminarActionPerformed(evt);
+            }
+        });
+        add(btnEliminar, new org.netbeans.lib.awtextra.AbsoluteConstraints(600, 150, -1, -1));
+        add(lblFecha, new org.netbeans.lib.awtextra.AbsoluteConstraints(160, 210, 90, 20));
+        add(lblEncargado, new org.netbeans.lib.awtextra.AbsoluteConstraints(460, 240, 90, 20));
+        add(lblConcesionario, new org.netbeans.lib.awtextra.AbsoluteConstraints(220, 240, 90, 20));
+        add(lblEstado, new org.netbeans.lib.awtextra.AbsoluteConstraints(440, 210, 90, 20));
     }// </editor-fold>//GEN-END:initComponents
 
+    private void txtSubActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSubActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSubActionPerformed
+
+    private void btnBuscarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnBuscarActionPerformed
+        if(validarCamposVacios()){
+            String cod_fact = txt_num_factura.getText();
+            Factura aux= new Factura();
+            Venta vent = new Venta();
+            aux.setCod_factura(cod_fact);
+            aux=factd.buscarFactura(aux);
+            vent=ventd.getVenta(cod_fact);
+            
+            txtSub.setText(aux.getSubtotal()+"");
+            txtImp.setText(aux.getImp()+"");
+            txtTot.setText(aux.getTotal()+"");
+            
+            lblFecha.setText(vent.getFecha());
+            lblEstado.setText(vent.getEstado());
+            Usuario user = new Usuario();
+            lblEncargado.setText(user.getNombreUsuario()+" "+user.getApellidoUsuario());
+            //Se va a realizar una busqueda de la lista de pedidos
+            
+        }else{
+            JOptionPane.showMessageDialog(null, "LLene el campo de busqueda");
+        }
+    }//GEN-LAST:event_btnBuscarActionPerformed
+
+    private void btnEliminarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEliminarActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEliminarActionPerformed
+
     private boolean validarCamposVacios() {
-   /*     return jTextField1.getText().isEmpty() 
-                || jTextField3.getText().isEmpty() || jTextField4.getText() == null;*/
+        return true;
     }
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    public javax.swing.JButton btnBuscar;
+    public javax.swing.JButton btnEliminar;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel4;
+    private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lblConcesionario;
+    private javax.swing.JLabel lblEncargado;
+    private javax.swing.JLabel lblEstado;
+    private javax.swing.JLabel lblFecha;
+    private javax.swing.JTextField txtImp;
+    private javax.swing.JTextField txtSub;
+    private javax.swing.JTextField txtTot;
+    private javax.swing.JTextField txt_num_factura;
     // End of variables declaration//GEN-END:variables
 }

@@ -11,17 +11,21 @@ package Modelo;
  */
 public class Concesionario {
     
+    private String Name;
+    private int Direcciont; 
+    private String Telefono ;
+    private String IdConcesionario;
+
     public Concesionario(String Name, int Direcciont, String Telefono, String IdConcesionario) {
         this.Name = Name;
         this.Direcciont = Direcciont;
         this.Telefono = Telefono;
         this.IdConcesionario = IdConcesionario;
     }
-    private String Name;
-    private int Direcciont; 
-    private String Telefono ;
-    private String IdConcesionario;
 
+    public Concesionario() {
+    }
+    
     public String getName() {
         return Name;
     }
